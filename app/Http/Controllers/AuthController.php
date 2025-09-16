@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+
     /**
      * @OA\Post(
      *     path="/api/register",
