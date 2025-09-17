@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+
     /**
+     * reza
      * @OA\Post(
      *     path="/api/register",
      *     summary="Register a new user",
