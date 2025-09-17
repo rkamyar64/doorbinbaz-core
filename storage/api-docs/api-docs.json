@@ -7,12 +7,12 @@
     },
     "servers": [
         {
-            "url": "http://my-default-host.com",
+            "url": "https://api.doorbinbaz.com",
             "description": "API Server"
         }
     ],
     "paths": {
-        "/products": {
+        "api/v1/products": {
             "get": {
                 "tags": [
                     "Products"
@@ -175,7 +175,7 @@
                 }
             }
         },
-        "/api/register": {
+        "/api/v1/register": {
             "post": {
                 "tags": [
                     "Authentication"
@@ -345,7 +345,7 @@
                 }
             }
         },
-        "/api/login": {
+        "/api/v1/login": {
             "post": {
                 "tags": [
                     "Authentication"
@@ -506,7 +506,7 @@
                 }
             }
         },
-        "/api/logout": {
+        "/api/v1/logout": {
             "post": {
                 "tags": [
                     "Authentication"
@@ -594,7 +594,7 @@
                 ]
             }
         },
-        "/api/user": {
+        "/api/v1/user": {
             "get": {
                 "tags": [
                     "Authentication"
