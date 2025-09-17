@@ -13,5 +13,10 @@ Route::prefix('v1')->group(function () {
         Route::post('/logout', [AuthController::class, 'logout']);
         Route::get('/user', [AuthController::class, 'user']);
     });
+
+    Route::get('/import-products', [\App\Http\Controllers\ArioController::class, 'import']);
+    Route::get('/products', [\App\Http\Controllers\ArioController::class, 'index']);
+
+
 });
 
