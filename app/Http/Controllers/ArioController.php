@@ -106,7 +106,7 @@ class ArioController extends Controller
 
     /**
      * @OA\Get(
-     *     path="api/v1/products",
+     *     path="/api/v1/products",
      *     tags={"Products"},
      *     summary="Get products with pagination and filters",
      *     description="Retrieve a paginated list of products with optional filtering by search, sku, name, and slug",
