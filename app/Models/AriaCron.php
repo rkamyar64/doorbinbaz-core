@@ -18,7 +18,8 @@ class AriaCron extends Model
         'images',
         'is_in_stock',
         'maximum',
-        'other'
+        'other',
+        'insert_wordpress'
     ];
 
     protected $casts = [

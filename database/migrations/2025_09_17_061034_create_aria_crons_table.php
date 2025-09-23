@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('is_in_stock');
             $table->string('maximum');
             $table->longText('other');
+            $table->boolean('insert_wordpress')->default(false);
             $table->timestamps();
         });
     }
