@@ -197,6 +197,9 @@ class AuthController extends Controller
             );
         }
         $user = Auth::user();
+       if(!$user){
+           return Response::error("user credentials not found",[]);
+       }
         //optionally revoke previous tokens etc
         $user->tokens()->delete();
 
