@@ -319,6 +319,11 @@ class AuthController extends Controller
      */
     public function user(Request $request)
     {
-        return response()->json($request->user());
+        return Response::success("user  ",$request->user()->only(['name', 'family','national_code','date_of_birth','email','phone']));
+    }
+
+    public function getAllUsers(Request $request)
+    {
+        return Response::success("user  ",User::all());
     }
 }

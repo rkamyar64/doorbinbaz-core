@@ -26,6 +26,7 @@ class User extends Authenticatable
         'national_code',
         'date_of_birth',
         'password',
+        'roles',
     ];
 
     /**
@@ -48,6 +49,76 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'roles' => 'array',
         ];
+    }
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($user) {
+            if (empty($user->roles)) {
+                $user->roles = ['ROLE_USER'];
+            }
+        });
+    }
+
+    const ROLE_USER = 'ROLE_USER';
+    const ROLE_ADMIN = 'ROLE_ADMIN';
+    const ROLE_SERVICE_WORKER = 'ROLE_SERVICE_WORKER';
+
+    public static $availableRoles = [
+        self::ROLE_USER,
+        self::ROLE_ADMIN,
+        self::ROLE_SERVICE_WORKER,
+    ];
+
+    // Helper methods
+    public function hasRole($role)
+    {
+        return in_array($role, $this->roles ?? []);
+    }
+
+    public function hasAnyRole($roles)
+    {
+        return !empty(array_intersect($roles, $this->roles ?? []));
+    }
+
+    public function hasAllRoles($roles)
+    {
+        return empty(array_diff($roles, $this->roles ?? []));
+    }
+
+    public function addRole($role)
+    {
+        $roles = $this->roles ?? [];
+        if (!in_array($role, $roles)) {
+            $roles[] = $role;
+            $this->roles = $roles;
+        }
+        return $this;
+    }
+
+    public function removeRole($role)
+    {
+        $roles = $this->roles ?? [];
+        $this->roles = array_values(array_filter($roles, fn($r) => $r !== $role));
+        return $this;
+    }
+
+    // Specific role checks
+    public function isAdmin()
+    {
+        return $this->hasRole(self::ROLE_ADMIN);
+    }
+
+    public function isServiceWorker()
+    {
+        return $this->hasRole(self::ROLE_SERVICE_WORKER);
+    }
+
+    public function isUser()
+    {
+        return $this->hasRole(self::ROLE_USER);
     }
 }

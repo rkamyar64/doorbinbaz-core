@@ -17,6 +17,9 @@ Route::prefix('v1')->group(function () {
     Route::get('/import-products', [\App\Http\Controllers\ArioController::class, 'import']);
     Route::get('/products', [\App\Http\Controllers\ArioController::class, 'index']);
 
+    Route::middleware(['role:ROLE_ADMIN'])->group(function () {
+        Route::get('/users', [AuthController::class, 'getAllUsers']);
+    });
 
 });
 
