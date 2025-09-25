@@ -704,14 +704,14 @@
                 ]
             }
         },
-        "/businesses/show": {
+        "/api/v1/businesses/show": {
             "get": {
                 "tags": [
                     "Businesses"
                 ],
                 "summary": "Get all businesses",
                 "description": "Retrieve a list of all businesses with optional search functionality",
-                "operationId": "4c064f4f72eec6532c21b3ca374aded4",
+                "operationId": "7ba25a0be54f91a1070751fe8360ae47",
                 "parameters": [
                     {
                         "name": "q",
@@ -768,14 +768,14 @@
                 }
             }
         },
-        "/businesses/store": {
+        "/api/v1/businesses/store": {
             "post": {
                 "tags": [
                     "Businesses"
                 ],
                 "summary": "Create a new business",
                 "description": "Create a new business record",
-                "operationId": "a63b3465fba57934e390182876ca5278",
+                "operationId": "dfb8caaada5a900a00e129acad036344",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -912,14 +912,14 @@
                 ]
             }
         },
-        "/businesses/{business}": {
+        "/api/v1/businesses/{business}": {
             "post": {
                 "tags": [
                     "Businesses"
                 ],
                 "summary": "Update an existing business",
                 "description": "Update a specific business record",
-                "operationId": "929668456f675f17dd1af9f4ba3e1c6b",
+                "operationId": "dbb8c3cdcf4805c61352e22c13294bc7",
                 "parameters": [
                     {
                         "name": "business",

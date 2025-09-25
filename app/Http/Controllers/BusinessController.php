@@ -14,7 +14,7 @@ class BusinessController extends Controller
 {
     /**
      * @OA\Get(
-     *     path="/businesses/show",
+     *     path="/api/v1/businesses/show",
      *     tags={"Businesses"},
      *     summary="Get all businesses",
      *     description="Retrieve a list of all businesses with optional search functionality",
@@ -93,7 +93,7 @@ class BusinessController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/businesses/store",
+     *     path="/api/v1/businesses/store",
      *     tags={"Businesses"},
      *     summary="Create a new business",
      *     description="Create a new business record",
@@ -237,7 +237,7 @@ class BusinessController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/businesses/{business}",
+     *     path="/api/v1/businesses/{business}",
      *     tags={"Businesses"},
      *     summary="Update an existing business",
      *     description="Update a specific business record",
