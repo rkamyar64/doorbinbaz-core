@@ -703,6 +703,370 @@
                     }
                 ]
             }
+        },
+        "/businesses/show": {
+            "get": {
+                "tags": [
+                    "Businesses"
+                ],
+                "summary": "Get all businesses",
+                "description": "Retrieve a list of all businesses with optional search functionality",
+                "operationId": "4c064f4f72eec6532c21b3ca374aded4",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "Search term to filter businesses by name, family, business_name, mobile, or national_id",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "john"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Businesses retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Businesses retrieved successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Error retrieving businesses"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/businesses/store": {
+            "post": {
+                "tags": [
+                    "Businesses"
+                ],
+                "summary": "Create a new business",
+                "description": "Create a new business record",
+                "operationId": "a63b3465fba57934e390182876ca5278",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "family",
+                                    "business_name",
+                                    "address",
+                                    "mobile"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "First name of the business owner",
+                                        "type": "string",
+                                        "maxLength": 255,
+                                        "example": "John"
+                                    },
+                                    "family": {
+                                        "description": "Last name of the business owner",
+                                        "type": "string",
+                                        "maxLength": 255,
+                                        "example": "Doe"
+                                    },
+                                    "business_name": {
+                                        "description": "Name of the business",
+                                        "type": "string",
+                                        "maxLength": 255,
+                                        "example": "John's Electronics Store"
+                                    },
+                                    "address": {
+                                        "description": "Business address",
+                                        "type": "string",
+                                        "maxLength": 500,
+                                        "example": "123 Main Street, City, State"
+                                    },
+                                    "mobile": {
+                                        "description": "Mobile phone number",
+                                        "type": "string",
+                                        "maxLength": 20,
+                                        "example": "+1234567890"
+                                    },
+                                    "tell": {
+                                        "description": "Telephone number (optional)",
+                                        "type": "string",
+                                        "maxLength": 20,
+                                        "example": "+1987654321"
+                                    },
+                                    "zipcode": {
+                                        "description": "ZIP/postal code (optional)",
+                                        "type": "string",
+                                        "maxLength": 10,
+                                        "example": "12345"
+                                    },
+                                    "national_id": {
+                                        "description": "National ID number (optional)",
+                                        "type": "string",
+                                        "maxLength": 20,
+                                        "example": "1234567890"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Business created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Business created successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation failed",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Validation failed"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Error creating business"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/businesses/{business}": {
+            "post": {
+                "tags": [
+                    "Businesses"
+                ],
+                "summary": "Update an existing business",
+                "description": "Update a specific business record",
+                "operationId": "929668456f675f17dd1af9f4ba3e1c6b",
+                "parameters": [
+                    {
+                        "name": "business",
+                        "in": "path",
+                        "description": "Business ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "family",
+                                    "business_name",
+                                    "address",
+                                    "mobile"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "First name of the business owner",
+                                        "type": "string",
+                                        "maxLength": 255,
+                                        "example": "John"
+                                    },
+                                    "family": {
+                                        "description": "Last name of the business owner",
+                                        "type": "string",
+                                        "maxLength": 255,
+                                        "example": "Doe"
+                                    },
+                                    "business_name": {
+                                        "description": "Name of the business",
+                                        "type": "string",
+                                        "maxLength": 255,
+                                        "example": "John's Electronics Store"
+                                    },
+                                    "address": {
+                                        "description": "Business address",
+                                        "type": "string",
+                                        "maxLength": 500,
+                                        "example": "123 Main Street, City, State"
+                                    },
+                                    "mobile": {
+                                        "description": "Mobile phone number",
+                                        "type": "string",
+                                        "maxLength": 20,
+                                        "example": "+1234567890"
+                                    },
+                                    "tell": {
+                                        "description": "Telephone number (optional)",
+                                        "type": "string",
+                                        "maxLength": 20,
+                                        "example": "+1987654321"
+                                    },
+                                    "zipcode": {
+                                        "description": "ZIP/postal code (optional)",
+                                        "type": "string",
+                                        "maxLength": 10,
+                                        "example": "12345"
+                                    },
+                                    "national_id": {
+                                        "description": "National ID number (optional)",
+                                        "type": "string",
+                                        "maxLength": 20,
+                                        "example": "1234567890"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Business updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Business updated successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation failed",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Validation failed"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Error creating business"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
         }
     },
     "components": {
@@ -721,6 +1085,10 @@
         {
             "name": "Authentication",
             "description": "Authentication"
+        },
+        {
+            "name": "Businesses",
+            "description": "Businesses"
         }
     ]
 }

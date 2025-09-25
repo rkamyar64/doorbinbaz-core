@@ -121,4 +121,15 @@ class User extends Authenticatable
     {
         return $this->hasRole(self::ROLE_USER);
     }
+
+
+    /**
+     * Get all records for this user (if one-to-many)
+     */
+    public function Business(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Bussiness::class, 'store_user_id');
+    }
+
+
 }
