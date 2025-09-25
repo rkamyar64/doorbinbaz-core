@@ -6,6 +6,7 @@ use App\Http\Libs\Response;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\Rule;
 
 class StoreBusinessRequest extends FormRequest
 {
@@ -19,11 +20,16 @@ class StoreBusinessRequest extends FormRequest
         $businessId = $this->route('business') ? $this->route('business')->id : null;
 
         return [
+            'mobile' => [
+                'required',
+                'string',
+                'max:20',
+                Rule::unique('business', 'mobile')->ignore($businessId)
+            ],
             'name' => 'required|string|max:255',
             'family' => 'required|string|max:255',
             'business_name' => 'required|string|max:255',
             'address' => 'required|string|max:500',
-            'mobile' => 'required|string|max:20|unique:businesses,mobile',
             'tell' => 'nullable|string|max:20',
             'zipcode' => 'nullable|string|max:10',
             'national_id' => 'nullable|string|max:20|unique:businesses,national_id,' . $businessId,

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BusinessController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -18,9 +19,13 @@ Route::prefix('v1')->group(function () {
             Route::get('/show', [BusinessController::class, 'index']);
             Route::post('/store', [BusinessController::class, 'store']);
             Route::post('/{business}', [BusinessController::class, 'update']);
-
         });
 
+        Route::prefix('services')->group(function () {
+            Route::get('/show', [ServiceController::class, 'index']);
+            Route::post('/store', [ServiceController::class, 'store']);
+            Route::post('/{service}', [ServiceController::class, 'update']);
+        });
 
 
     });
