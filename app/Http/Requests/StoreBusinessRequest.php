@@ -17,14 +17,14 @@ class StoreBusinessRequest extends FormRequest
 
     public function rules()
     {
-        $businessId = $this->route('business') ? $this->route('business')->id : null;
+        $businessId = $this->route('businesses') ? $this->route('business')->id : null;
 
         return [
             'mobile' => [
                 'required',
                 'string',
                 'max:20',
-                Rule::unique('business', 'mobile')->ignore($businessId)
+                Rule::unique('businesses', 'mobile')->ignore($businessId)
             ],
             'name' => 'required|string|max:255',
             'family' => 'required|string|max:255',
