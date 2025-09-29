@@ -18,14 +18,14 @@ class StoreOrderRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'business_id' => 'required|string|max:255|exists:businesses,id',
-            'services' => 'required|string|max:255',
+            'business_id' => 'required|max:255|exists:businesses,id',
+            'services' => 'string|max:255',
             'description' => 'string|max:65535',
-            'status' => 'string|max:255',
-            'full_price' => 'required|string|max:255',
-            'fee_price' => 'string|max:255',
-            'profit_price' => 'string|max:255',
-            'discount' => 'string|max:255',
+            'status' => 'integer|max:255',
+            'full_price' => 'integer|max:255',
+            'fee_price' => 'integer|max:255',
+            'profit_price' => 'integer|max:255',
+            'discount' => 'integer|max:255',
             'service_user_id' => 'integer|exists:users,id',
 
         ];
@@ -51,7 +51,6 @@ class StoreOrderRequest extends FormRequest
         return [
             'business_id.required' => 'Please enter your business.',
             'services.required' => 'Please enter services.',
-            'full_price.required' => 'Please enter full_price.',
 
         ];
     }

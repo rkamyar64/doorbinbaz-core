@@ -1275,25 +1275,25 @@
                                     },
                                     "full_price": {
                                         "description": "Full price of the order",
-                                        "type": "number",
+                                        "type": "integer",
                                         "format": "float",
                                         "example": 1000
                                     },
                                     "fee_price": {
                                         "description": "Fee price",
-                                        "type": "number",
+                                        "type": "integer",
                                         "format": "float",
                                         "example": 100
                                     },
                                     "profit_price": {
                                         "description": "Profit price",
-                                        "type": "number",
+                                        "type": "integer",
                                         "format": "float",
                                         "example": 50
                                     },
                                     "discount": {
                                         "description": "Discount amount",
-                                        "type": "number",
+                                        "type": "integer",
                                         "format": "float",
                                         "example": 10
                                     }

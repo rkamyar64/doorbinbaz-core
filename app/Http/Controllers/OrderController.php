@@ -135,10 +135,10 @@ class OrderController extends Controller
      *             @OA\Property(property="services", type="string", example="Haircut and styling", description="Services provided"),
      *             @OA\Property(property="description", type="string", example="Regular haircut with styling", description="Order description"),
      *             @OA\Property(property="status", type="string", example="pending", description="Order status (pending, completed, cancelled, etc.)"),
-     *             @OA\Property(property="full_price", type="number", format="float", example=1000.00, description="Full price of the order"),
-     *             @OA\Property(property="fee_price", type="number", format="float", example=100.00, description="Fee price"),
-     *             @OA\Property(property="profit_price", type="number", format="float", example=50.00, description="Profit price"),
-     *             @OA\Property(property="discount", type="number", format="float", example=10.00, description="Discount amount")
+     *             @OA\Property(property="full_price", type="integer", format="float", example=1000.00, description="Full price of the order"),
+     *             @OA\Property(property="fee_price", type="integer", format="float", example=100.00, description="Fee price"),
+     *             @OA\Property(property="profit_price", type="integer", format="float", example=50.00, description="Profit price"),
+     *             @OA\Property(property="discount", type="integer", format="float", example=10.00, description="Discount amount")
      *         )
      *     ),
      *     @OA\Response(
