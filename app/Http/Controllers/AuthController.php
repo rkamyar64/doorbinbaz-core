@@ -98,6 +98,7 @@ class AuthController extends Controller
             'family'     => $validated['family'],
             'email'    => $validated['email'],
             'phone'    => $validated['phone'],
+            'roles'    => json_encode($validated['roles']),
             'password' => Hash::make($validated['password']),
         ]);
 
@@ -320,6 +321,12 @@ class AuthController extends Controller
     public function user(Request $request)
     {
         return Response::success("user  ",$request->user()->only(['name', 'family','national_code','date_of_birth','email','phone','roles']));
+    }
+
+    public function show(Request $request)
+    {
+        $users = User::whereRaw("NOT JSON_CONTAINS(roles, '\"ROLE_ADMIN\"')")->get();
+        return Response::success("user  ",$users);
     }
 
     public function getAllUsers(Request $request)
