@@ -129,7 +129,7 @@ class OrderController extends Controller
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
-     *             required={"business_id", "service_user_id", "services", "status", "full_price"},
+     *             required={"business_id"},
      *             @OA\Property(property="business_id", type="integer", example=1, description="Business ID"),
      *             @OA\Property(property="service_user_id", type="integer", example=2, description="Service user ID"),
      *             @OA\Property(property="services", type="string", example="Haircut and styling", description="Services provided"),
@@ -139,30 +139,6 @@ class OrderController extends Controller
      *             @OA\Property(property="fee_price", type="integer", format="float", example=100.00, description="Fee price"),
      *             @OA\Property(property="profit_price", type="integer", format="float", example=50.00, description="Profit price"),
      *             @OA\Property(property="discount", type="integer", format="float", example=10.00, description="Discount amount")
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Order created successfully",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="success", type="boolean", example=true),
-     *             @OA\Property(property="message", type="string", example="Order created successfully"),
-     *             @OA\Property(
-     *                 property="data",
-     *                 type="object",
-     *                 @OA\Property(property="id", type="integer", example=1),
-     *                 @OA\Property(property="businessId", type="object"),
-     *                 @OA\Property(property="serviceUsers", type="object"),
-     *                 @OA\Property(property="storeUser", type="object"),
-     *                 @OA\Property(property="services", type="string", example="Haircut and styling"),
-     *                 @OA\Property(property="description", type="string", example="Regular haircut with styling"),
-     *                 @OA\Property(property="status", type="string", example="pending"),
-     *                 @OA\Property(property="full_price", type="number", format="float", example=1000.00),
-     *                 @OA\Property(property="fee_price", type="number", format="float", example=100.00),
-     *                 @OA\Property(property="profit_price", type="number", format="float", example=50.00),
-     *                 @OA\Property(property="discount", type="number", format="float", example=10.00),
-     *                 @OA\Property(property="created_at", type="string", format="date-time", example="2024-01-01T12:00:00Z")
-     *             )
      *         )
      *     ),
      *     @OA\Response(
@@ -238,30 +214,6 @@ class OrderController extends Controller
      *             @OA\Property(property="fee_price", type="number", format="float", example=100.00, description="Fee price"),
      *             @OA\Property(property="profit_price", type="number", format="float", example=50.00, description="Profit price"),
      *             @OA\Property(property="discount", type="number", format="float", example=10.00, description="Discount amount")
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Order updated successfully",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="success", type="boolean", example=true),
-     *             @OA\Property(property="message", type="string", example="Order updated successfully"),
-     *             @OA\Property(
-     *                 property="data",
-     *                 type="object",
-     *                 @OA\Property(property="id", type="integer", example=1),
-     *                 @OA\Property(property="businessId", type="object"),
-     *                 @OA\Property(property="serviceUsers", type="object"),
-     *                 @OA\Property(property="storeUser", type="object"),
-     *                 @OA\Property(property="services", type="string", example="Haircut and styling"),
-     *                 @OA\Property(property="description", type="string", example="Regular haircut with styling"),
-     *                 @OA\Property(property="status", type="string", example="completed"),
-     *                 @OA\Property(property="full_price", type="number", format="float", example=1000.00),
-     *                 @OA\Property(property="fee_price", type="number", format="float", example=100.00),
-     *                 @OA\Property(property="profit_price", type="number", format="float", example=50.00),
-     *                 @OA\Property(property="discount", type="number", format="float", example=10.00),
-     *                 @OA\Property(property="created_at", type="string", format="date-time", example="2024-01-01T12:00:00Z")
-     *             )
      *         )
      *     ),
      *     @OA\Response(
