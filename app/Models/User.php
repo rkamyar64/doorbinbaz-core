@@ -66,11 +66,13 @@ class User extends Authenticatable
     const ROLE_USER = 'ROLE_USER';
     const ROLE_ADMIN = 'ROLE_ADMIN';
     const ROLE_SERVICE_WORKER = 'ROLE_SERVICE_WORKER';
+    const ROLE_VISITOR= 'ROLE_VISITOR';
 
     public static $availableRoles = [
         self::ROLE_USER,
         self::ROLE_ADMIN,
         self::ROLE_SERVICE_WORKER,
+        self::ROLE_VISITOR,
     ];
 
     // Helper methods
@@ -115,6 +117,10 @@ class User extends Authenticatable
     public function isServiceWorker()
     {
         return $this->hasRole(self::ROLE_SERVICE_WORKER);
+    }
+    public function isVisitor()
+    {
+        return $this->hasRole(self::ROLE_VISITOR);
     }
 
     public function isUser()

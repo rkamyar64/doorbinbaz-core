@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BusinessController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ServiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,17 +28,28 @@ Route::prefix('v1')->group(function () {
             Route::post('/{service}', [ServiceController::class, 'update']);
         });
 
+        Route::prefix('orders')->group(function () {
+            Route::get('/show', [OrderController::class, 'index']);
+            Route::post('/store', [OrderController::class, 'store']);
+            Route::post('/{orders}', [OrderController::class, 'update']);
+        });
 
     });
 
-    Route::get('/import-products', [\App\Http\Controllers\ArioController::class, 'import']);
-    Route::get('/products', [\App\Http\Controllers\ArioController::class, 'index']);
+//    //دسترسی ویزیتور
+//    Route::middleware(['role:ROLE_VISITOR'])->group(function () {
+//        Route::middleware('auth:sanctum')->group(function () {
+//
+//        });
+//    });
 
     Route::middleware(['role:ROLE_ADMIN'])->group(function () {
         Route::get('/users', [AuthController::class, 'getAllUsers']);
     });
 
 
+    Route::get('/import-products', [\App\Http\Controllers\ArioController::class, 'import']);
+    Route::get('/products', [\App\Http\Controllers\ArioController::class, 'index']);
 
 
 });
