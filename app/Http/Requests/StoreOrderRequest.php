@@ -26,7 +26,6 @@ class StoreOrderRequest extends FormRequest
             'fee_price' => 'integer',
             'profit_price' => 'integer',
             'discount' => 'integer',
-            'service_user_id' => 'integer|exists:users,id',
 
         ];
         $orderId = $this->route('orders'); // Adjust 'orders' to match your route parameter name
@@ -50,7 +49,6 @@ class StoreOrderRequest extends FormRequest
     {
         return [
             'business_id.required' => 'Please enter your business.',
-            'services.required' => 'Please enter services.',
 
         ];
     }
