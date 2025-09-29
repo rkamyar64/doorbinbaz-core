@@ -1686,7 +1686,7 @@
                 ]
             }
         },
-        "/api/v1/services": {
+        "/api/v1/services/show": {
             "get": {
                 "tags": [
                     "Services"
@@ -1829,7 +1829,9 @@
                         "bearerAuth": []
                     }
                 ]
-            },
+            }
+        },
+        "/api/v1/services/store": {
             "post": {
                 "tags": [
                     "Services"

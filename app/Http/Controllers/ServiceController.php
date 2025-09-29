@@ -22,7 +22,7 @@ class ServiceController extends Controller
 {
     /**
      * @OA\Get(
-     *     path="/api/v1/services",
+     *     path="/api/v1/services/show",
      *     summary="Get list of services",
      *     description="Retrieve a paginated list of services with optional search functionality",
      *     operationId="getServices",
@@ -105,7 +105,7 @@ class ServiceController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/api/v1/services",
+     *     path="/api/v1/services/store",
      *     summary="Create a new service",
      *     description="Create a new service with the provided data",
      *     operationId="createService",
