@@ -22,6 +22,12 @@ return Application::configure(basePath: dirname(__DIR__))
             'role' => \App\Http\Middleware\CheckRole::class,
         ]);
     })
+    ->withMiddleware(function (Middleware $middleware) {
+        $middleware->validateCsrfTokens(except: [
+            'api/*',
+            'webhook/*',
+        ]);
+    })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->renderable(function (AuthenticationException $exception, $request) {
             if ($request->expectsJson() || str_starts_with($request->path(), 'api/')) {
