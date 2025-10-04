@@ -289,4 +289,14 @@ class OrderController extends Controller
 
     }
 
+    public function orders(Orders $id): JsonResponse
+    {
+        try {
+            return Response::success("Showing order successfully",  $id->only(['id','businessId','serviceUsers', 'storeUser', 'services', 'description', 'status', 'full_price', 'fee_price', 'profit_price', 'discount','created_at']));
+
+        }catch (\Exception $e) {
+            return Response::error("Error showing order", $e->getMessage(), 500);
+        }
+    }
+
 }
