@@ -27,7 +27,6 @@ class StoreServiceRequest extends FormRequest
                 'string',
                 Rule::unique('services', 'name')->ignore($serviceId)
             ],
-            'price' => 'string|max:255',
             'description' => 'string|max:255',];
     }
 
