@@ -176,8 +176,35 @@ class OrderController extends Controller
             $orders->load('storeUser');
             $orders->load('serviceUsers');
             $orders->load('businessId');
-            $apiKey = '4D5A6E6C6F4C66534D6E3841305370795451654436696F4E766C6F3057477769657453634E342B397936413D';
-            file_get_contents("https://api.kavenegar.com/v1/".$apiKey."/verify/lookup.json?receptor=".$orders->businessId->mobile."&token=".$orders->id."&template=new-service");
+            $apiKey = '4D5A6E6C6F4C66534D6E3841305370795451654436696F4E766C3057477769657453634E342B397936413D';
+            $url = "https://api.kavenegar.com/v1/{$apiKey}/verify/lookup.json";
+            $params = [
+                'receptor' => $orders->businessId->mobile,
+                'token' => $orders->id,
+                'template' => 'new-service'
+            ];
+
+// Initialize cURL
+            $ch = curl_init();
+
+// Set options
+            curl_setopt($ch, CURLOPT_URL, $url . '?' . http_build_query($params));
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+// Execute request
+            $response = curl_exec($ch);
+
+// Handle errors
+            if (curl_errno($ch)) {
+                echo 'cURL Error: ' . curl_error($ch);
+            } else {
+                // Optionally decode the response
+                $result = json_decode($response, true);
+                print_r($result);
+            }
+
+// Close connection
+            curl_close($ch);
             return Response::success("Order created successfully", $orders->only(['id','businessId','serviceUsers', 'storeUser', 'services', 'description', 'status', 'full_price', 'fee_price', 'profit_price', 'discount','created_at']));
 
         } catch (ValidationException $e) {
