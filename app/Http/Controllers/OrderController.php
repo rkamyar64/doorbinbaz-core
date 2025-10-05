@@ -176,6 +176,8 @@ class OrderController extends Controller
             $orders->load('storeUser');
             $orders->load('serviceUsers');
             $orders->load('businessId');
+            $apiKey = '4D5A6E6C6F4C66534D6E3841305370795451654436696F4E766C6F3057477769657453634E342B397936413D';
+            file_get_contents("https://api.kavenegar.com/v1/".$apiKey."/verify/lookup.json?receptor=".$orders->businessId->mobile."&token=".$orders->id."&template=new-service");
             return Response::success("Order created successfully", $orders->only(['id','businessId','serviceUsers', 'storeUser', 'services', 'description', 'status', 'full_price', 'fee_price', 'profit_price', 'discount','created_at']));
 
         } catch (ValidationException $e) {
