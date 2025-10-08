@@ -26,6 +26,7 @@ class StoreOrderRequest extends FormRequest
             'fee_price' => 'integer',
             'profit_price' => 'integer',
             'discount' => 'integer',
+            'service_user_id' => 'integer',
 
         ];
         $orderId = $this->route('orders'); // Adjust 'orders' to match your route parameter name

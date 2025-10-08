@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Libs\GetApiData;
 use App\Http\Libs\Response;
 use App\Http\Requests\StoreBusinessRequest;
 use App\Http\Requests\StoreOrderRequest;
@@ -176,19 +177,10 @@ class OrderController extends Controller
             $orders->load('storeUser');
             $orders->load('serviceUsers');
             $orders->load('businessId');
-            $apiKey = '4D5A6E6C6F4C66534D6E3841305370795451654436696F4E766C6F3057477769657453634E342B397936413D';
-            $url = "https://api.kavenegar.com/v1/{$apiKey}/verify/lookup.json";
-            $params = [
-                'receptor' => $orders->businessId->mobile,
-                'token' =>$orders->id,
-                'template' => 'new-service'
-            ];
 
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url . '?' . http_build_query($params));
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-             curl_exec($ch);
-            curl_close($ch);
+           // (new GetApiData())->KaveNegarPattern($orders->businessId->mobile,'new-service',$orders->id);
+            (new GetApiData())->KaveNegarPattern($orders->businessId->mobile,'new-service',$orders->businessId->name."_".$orders->businessId->family,$orders->businessId->business_name,$orders->id);
+
             return Response::success("Order created successfully", $orders->only(['id','businessId','serviceUsers', 'storeUser', 'services', 'description', 'status', 'full_price', 'fee_price', 'profit_price', 'discount','created_at']));
 
         } catch (ValidationException $e) {
@@ -266,11 +258,13 @@ class OrderController extends Controller
     {
         try {
             $validated = $request->validated();
+            $orders->fill($validated);
+            $serviceUserChanged = $orders->isDirty('service_user_id');
+            $orders->save();
+            if ($serviceUserChanged) {
+                 (new GetApiData())->KaveNegarPattern($orders->serviceUsers->mobile,'serviceman-sms',$orders->id);
+            }
 
-            $orders->update($validated);
-            $orders->load('storeUser');
-            $orders->load('serviceUsers');
-            $orders->load('businessId');
             return Response::success("Order updated successfully",  $orders->only(['id','businessId','serviceUsers', 'storeUser', 'services', 'description', 'status', 'full_price', 'fee_price', 'profit_price', 'discount','created_at']));
 
 
