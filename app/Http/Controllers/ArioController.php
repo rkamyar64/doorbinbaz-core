@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\AriaCron;
+use App\Models\ArioMapDoorbinbaz;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
@@ -15,6 +17,7 @@ class ArioController extends Controller
 
     public function import()
     {
+        ini_set('max_execution_time', '0');
         $totalImported = 0;
         $errors = [];
 
