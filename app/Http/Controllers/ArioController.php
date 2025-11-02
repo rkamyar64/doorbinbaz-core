@@ -87,7 +87,10 @@ class ArioController extends Controller
         if (isset($data["add_to_cart"]) && isset($data["add_to_cart"]["maximum"])) {
             $maximum = $data["add_to_cart"]["maximum"];
         }
-
+        if($data['stock_availability']['class']=="out-of-stock")
+            $status = false;
+        else
+            $status = true;
         AriaCron::updateOrCreate(
             ['wc_id' => $data['id']],
             [
@@ -99,7 +102,7 @@ class ArioController extends Controller
                 'price' => $price,
                 'regular_price' => $regular_price,
                 'images' => json_encode($data['images'] ?? []),
-                'is_in_stock' => $data["is_in_stock"],
+                'is_in_stock' => $status,
                 'maximum' => $maximum,
                 'other' => json_encode($data ?? []),
             ]
