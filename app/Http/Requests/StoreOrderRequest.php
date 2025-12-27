@@ -20,7 +20,6 @@ class StoreOrderRequest extends FormRequest
         $rules = [
             'business_id' => 'required|max:255|exists:businesses,id',
             'services' => 'string|max:255',
-            'description' => 'string|max:65535',
             'status' => 'integer|max:255',
             'full_price' => 'integer',
             'fee_price' => 'integer',
