@@ -179,7 +179,7 @@ class OrderController extends Controller
             $orders->load('businessId');
 
            // (new GetApiData())->KaveNegarPattern($orders->businessId->mobile,'new-service',$orders->id);
-            (new GetApiData())->KaveNegarPattern($orders->businessId->mobile,'new-service',$orders->businessId->name."_".$orders->businessId->family,$orders->businessId->business_name,$orders->id);
+            (new GetApiData())->KaveNegarPattern($orders->businessId->mobile,'new-service',$orders->businessId->name."_".$orders->businessId->family,$orders->id);
 
             return Response::success("Order created successfully", $orders->only(['id','businessId','serviceUsers', 'storeUser', 'services', 'description', 'status', 'full_price', 'fee_price', 'profit_price', 'discount','created_at']));
 
