@@ -309,5 +309,15 @@ class OrderController extends Controller
             return Response::error("Error showing order", $e->getMessage(), 500);
         }
     }
+    public function delete(Orders $orders): JsonResponse
+    {
+        try {
+            $orders->delete();
+            return Response::success(" order delete successfully",  null);
+
+        }catch (\Exception $e) {
+            return Response::error("Error showing order", $e->getMessage(), 500);
+        }
+    }
 
 }

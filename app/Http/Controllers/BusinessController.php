@@ -418,4 +418,14 @@ class BusinessController extends Controller
         }
 
     }
+    public function delete(Business $business): JsonResponse
+    {
+        try {
+            $business->delete();
+            return Response::success(" Business delete successfully",  null);
+
+        }catch (\Exception $e) {
+            return Response::error("Error showing Business", $e->getMessage(), 500);
+        }
+    }
 }

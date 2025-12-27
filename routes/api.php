@@ -23,18 +23,21 @@ Route::prefix('v1')->group(function () {
             Route::get('/show', [BusinessController::class, 'index']);
             Route::post('/store', [BusinessController::class, 'store']);
             Route::post('/{business}', [BusinessController::class, 'update']);
+            Route::delete('/{business}', [BusinessController::class, 'delete']);
         });
 
         Route::prefix('services')->group(function () {
             Route::get('/show', [ServiceController::class, 'index']);
             Route::post('/store', [ServiceController::class, 'store']);
             Route::post('/{service}', [ServiceController::class, 'update']);
+            Route::delete('/{service}', [ServiceController::class, 'delete']);
         });
 
         Route::prefix('orders')->group(function () {
             Route::get('/show', [OrderController::class, 'index']);
             Route::post('/store', [OrderController::class, 'store']);
             Route::post('/{orders}', [OrderController::class, 'update']);
+            Route::delete('/{orders}', [OrderController::class, 'delete']);
         });
 
     });
@@ -53,7 +56,6 @@ Route::prefix('v1')->group(function () {
 
     Route::get('/import-products', [\App\Http\Controllers\ArioController::class, 'import']);
     Route::get('/products', [\App\Http\Controllers\ArioController::class, 'index']);
-
 
 });
 

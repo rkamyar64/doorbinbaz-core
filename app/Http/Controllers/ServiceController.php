@@ -350,4 +350,15 @@ class ServiceController extends Controller
             return Response::error("Error creating Service", $e->getMessage(), 500);
         }
     }
+
+    public function delete(Services $service): JsonResponse
+    {
+        try {
+            $service->delete();
+            return Response::success(" Service delete successfully",  null);
+
+        }catch (\Exception $e) {
+            return Response::error("Error showing Service", $e->getMessage(), 500);
+        }
+    }
 }
