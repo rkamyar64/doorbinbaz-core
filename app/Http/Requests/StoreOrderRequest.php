@@ -20,11 +20,13 @@ class StoreOrderRequest extends FormRequest
         $rules = [
             'business_id' => 'required|max:255|exists:businesses,id',
             'services' => 'string|max:255',
+            'description' => 'nullable|string|max:65535',
             'status' => 'integer|max:255',
             'full_price' => 'integer',
             'fee_price' => 'integer',
             'profit_price' => 'integer',
             'discount' => 'integer',
+            'service_user_id' => 'nullable|exists:users,id',
 
         ];
         $orderId = $this->route('orders'); // Adjust 'orders' to match your route parameter name
