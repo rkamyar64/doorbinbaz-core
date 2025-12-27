@@ -111,7 +111,7 @@ class OrderController extends Controller
                 });
             }
 
-            $orders = $orders->get();
+            $orders = $orders->orderBy('id', 'desc')->get();
             return Response::success("orders retrieved successfully", $orders);
 
         } catch (\Exception $e) {
