@@ -80,7 +80,8 @@ class OrderController extends Controller
     public function index(Request $request): JsonResponse
     {
         try {
-            $orders = Orders::with(['storeUser','serviceUsers','businessId'])->where('store_user_id', $request->user()->id);
+
+            $orders = Orders::with(['storeUser','serviceUsers','businessId']);
 
             if ($request->filled('q')) {
                 $searchTerm = $request->q;
@@ -109,6 +110,9 @@ class OrderController extends Controller
 
                         });
                 });
+            }
+            if ($request->user()->hasRole('ROLE_SERVICE_WORKER')) {
+                $orders->where('service_user_id', $request->user()->id);
             }
 
             $orders = $orders->orderBy('id', 'desc')->get();
